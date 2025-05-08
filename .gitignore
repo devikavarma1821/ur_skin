@@ -4,7 +4,7 @@ __pycache__/
 *.sqlite3
 *.log
 
-# Environment
+# Virtual Environment
 venv/
 .env
 
@@ -12,9 +12,17 @@ venv/
 .idea/
 *.iml
 
-# Django static files
+# Django static files (generated at runtime)
 staticfiles/
 
-# OS
+# Django media files (uploaded by users)
+media/
+
+# Operating System files
 .DS_Store
 Thumbs.db
+
+# Other common files to ignore
+*.pot
+*.pyc
+*.pyo

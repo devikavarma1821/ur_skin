@@ -1,5 +1,12 @@
 from pathlib import Path
 import os
+import dj_database_url
+
+
+
+DATABASES = {
+    'default': dj_database_url.config(default='postgres://user:password@localhost/dbname')
+}
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -97,6 +104,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # Default primary key field type
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+# Custom login URL
+LOGIN_URL = '/login/'
 # Security settings (ensure these are only active in production)
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
@@ -115,3 +124,5 @@ if DEBUG:
     ]
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS[0])
+
+
