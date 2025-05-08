@@ -1,0 +1,15 @@
+<!-- store/templates/store/payment.html -->
+{% extends 'store/base.html' %}
+{% block content %}
+<h2>Payment Method</h2>
+<form method="post">
+    {% csrf_token %}
+    <label>Card Number:</label>
+    <input type="text" name="card_number">
+    <label>Expiry:</label>
+    <input type="text" name="expiry">
+    <label>CVV:</label>
+    <input type="text" name="cvv">
+    <button type="submit">Pay Now</button>
+</form>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "store/base.html" %}
+{% block title %}Cart{% endblock %}
+{% block content %}
+<h1>Your Cart</h1>
+<ul>
+  {% for item in cart_items %}
+  <li>{{ item.quantity }} × {{ item.product.name }} — ${{ item.product.price|floatformat:2 }}</li>
+  {% endfor %}
+</ul>
+<p><strong>Total:</strong> ${{ cart_total|floatformat:2 }}</p>
+{% endblock %}

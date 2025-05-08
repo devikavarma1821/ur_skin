@@ -1,0 +1,10 @@
+{% extends "store/base.html" %}
+{% block title %}Favourites{% endblock %}
+{% block content %}
+<h1>Your Favourites</h1>
+<ul>
+  {% for fav in favourite_items %}
+  <li>{{ fav.product.name }}</li>
+  {% empty %} <li>No favourites yet.</li> {% endfor %}
+</ul>
+{% endblock %}

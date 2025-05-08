@@ -1,0 +1,384 @@
+{% extends "store/base.html" %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<style>
+  .main-container {
+    display: flex;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f5f7fa;
+  }
+
+  .sidebar {
+    width: 260px;
+    background: linear-gradient(180deg, #ffffff, #f0f0f0);
+    padding: 30px 20px;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+    border-right: 1px solid #e0e0e0;
+  }
+
+  .logo-section img {
+    max-width: 140px;
+    display: block;
+    margin: 0 auto 10px;
+  }
+
+  .logo-section h1 {
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+    margin: 10px 0 5px;
+  }
+
+  .logo-section p {
+    text-align: center;
+    font-size: 14px;
+    color: #777;
+  }
+
+  .product-categories {
+    margin-top: 30px;
+  }
+
+  .product-categories h3 {
+    font-size: 18px;
+    color: #444;
+    margin-bottom: 10px;
+  }
+
+  .product-categories ul {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .product-categories li {
+    margin: 8px 0;
+  }
+
+  .product-categories a {
+    text-decoration: none;
+    color: #555;
+    font-weight: 500;
+    transition: 0.3s;
+  }
+
+  .product-categories a:hover {
+    color: #c91c52;
+  }
+
+  .product-grid {
+    flex: 1;
+    padding: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 30px;
+    background: #fdfdfd;
+  }
+
+  .category-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .category-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .img-wrapper img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 6px;
+  }
+
+  .category-card h3 {
+    font-size: 16px;
+    margin-top: 10px;
+    color: #333;
+  }
+
+  .category-card p {
+    color: #666;
+    margin: 5px 0;
+  }
+
+  .card-separator {
+    margin: 10px 0;
+  }
+
+  .category-card a {
+    font-size: 20px;
+    margin: 0 5px;
+    color: #888;
+    text-decoration: none;
+  }
+
+  .quantity-selector {
+    margin-top: 10px;
+  }
+
+  .quantity-btn {
+    background-color: #c91c52;
+    color: white;
+    border: none;
+    padding: 4px 10px;
+    font-size: 16px;
+    margin: 0 4px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .quantity {
+    font-size: 16px;
+    font-weight: 600;
+  }
+</style>
+
+<div class="main-container">
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="logo-section">
+      <img src="{% static 'store/img/logo_main.png' %}" alt="Ur Skin Logo">
+      <h1>Ur Skin</h1>
+      <p>Nourish your beauty</p>
+    </div>
+    <div class="product-categories">
+      <h3>Product Categories</h3>
+      <ul>
+        <li><a href="#">Moisturizers</a></li>
+        <li><a href="#">Facewash</a></li>
+        <li><a href="#">Shampoo</a></li>
+        <li><a href="#">Sunscreen</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Product Grid -->
+  <div class="product-grid">
+    {% comment "Product list" %}
+    {% for product in products %}
+    {% endcomment %}
+
+    {% for product in products %}
+         <!-- Render product card using product.id, product.title, product.price, product.image etc. -->
+    {% endfor %}
+
+
+    <!-- Product 1 -->
+    <div class="category-card">
+      <div class="img-wrapper">
+        <img src="{% static 'store/img/moisturizer_daily.jpeg' %}" alt="Moisturizer">
+      </div>
+      <h3>Moisturizer</h3>
+      <p>$30</p>
+      <hr class="card-separator">
+      <div>
+        <a href="#" class="add-to-cart-btn" data-product-id="1">🛒</a>
+        <a href="#" class="add-to-fav-btn" data-product-id="1">❤️</a>
+      </div>
+      <div class="quantity-selector">
+        <button onclick="updateQuantity('quantity1', 'decrease')" class="quantity-btn">-</button>
+        <span id="quantity1" class="quantity">1</span>
+        <button onclick="updateQuantity('quantity1', 'increase')" class="quantity-btn">+</button>
+      </div>
+    </div>
+
+    <!-- Repeat similar cards for products 2 to 8 -->
+    <!-- Change only ID, title, image and price for each -->
+    <!-- Product 2 -->
+    <div class="category-card">
+      <div class="img-wrapper">
+        <img src="{% static 'store/img/moisturizer_hydrating.jpeg' %}" alt="Hydrating Moisturizer">
+      </div>
+      <h3>Hydrating Moisturizer</h3>
+      <p>$25</p>
+      <hr class="card-separator">
+      <div>
+        <a href="#" class="add-to-cart-btn" data-product-id="2">🛒</a>
+        <a href="#" class="add-to-fav-btn" data-product-id="2">❤️</a>
+      </div>
+      <div class="quantity-selector">
+        <button onclick="updateQuantity('quantity2', 'decrease')" class="quantity-btn">-</button>
+        <span id="quantity2" class="quantity">1</span>
+        <button onclick="updateQuantity('quantity2', 'increase')" class="quantity-btn">+</button>
+      </div>
+    </div>
+
+    <!-- Product 3 -->
+    <div class="category-card">
+      <div class="img-wrapper">
+        <img src="{% static 'store/img/facewash_cleanser.jpeg' %}" alt="Facewash">
+      </div>
+      <h3>Facewash</h3>
+      <p>$15</p>
+      <hr class="card-separator">
+      <div>
+        <a href="#" class="add-to-cart-btn" data-product-id="3">🛒</a>
+        <a href="#" class="add-to-fav-btn" data-product-id="3">❤️</a>
+      </div>
+      <div class="quantity-selector">
+        <button onclick="updateQuantity('quantity3', 'decrease')" class="quantity-btn">-</button>
+        <span id="quantity3" class="quantity">1</span>
+        <button onclick="updateQuantity('quantity3', 'increase')" class="quantity-btn">+</button>
+      </div>
+    </div>
+
+        <!-- Product 4 -->
+    <div class="category-card">
+      <div class="img-wrapper">
+        <img src="{% static 'store/img/facewash_foam.jpeg' %}" alt="Shampoo">
+      </div>
+      <h3>Shampoo</h3>
+      <p>$5</p>
+      <hr class="card-separator">
+      <div>
+        <a href="#" class="add-to-cart-btn" data-product-id="4">🛒</a>
+        <a href="#" class="add-to-fav-btn" data-product-id="4">❤️</a>
+      </div>
+      <div class="quantity-selector">
+        <button onclick="updateQuantity('quantity4', 'decrease')" class="quantity-btn">-</button>
+        <span id="quantity4" class="quantity">1</span>
+        <button onclick="updateQuantity('quantity4', 'increase')" class="quantity-btn">+</button>
+      </div>
+    </div>
+
+
+    <!-- Product 5 -->
+    <div class="category-card">
+      <div class="img-wrapper">
+        <img src="{% static 'store/img/shampoo_nourish.jpeg' %}" alt="Shampoo">
+      </div>
+      <h3>Shampoo</h3>
+      <p>$5</p>
+      <hr class="card-separator">
+      <div>
+        <a href="#" class="add-to-cart-btn" data-product-id="5">🛒</a>
+        <a href="#" class="add-to-fav-btn" data-product-id="5">❤️</a>
+      </div>
+      <div class="quantity-selector">
+        <button onclick="updateQuantity('quantity5', 'decrease')" class="quantity-btn">-</button>
+        <span id="quantity5" class="quantity">1</span>
+        <button onclick="updateQuantity('quantity5', 'increase')" class="quantity-btn">+</button>
+      </div>
+    </div>
+
+    <!-- Product 6 -->
+    <div class="category-card">
+      <div class="img-wrapper">
+        <img src="{% static 'store/img/shampoo_strengthening.jpeg' %}" alt="Herbal Shampoo">
+      </div>
+      <h3>Herbal Shampoo</h3>
+      <p>$7</p>
+      <hr class="card-separator">
+      <div>
+        <a href="#" class="add-to-cart-btn" data-product-id="6">🛒</a>
+        <a href="#" class="add-to-fav-btn" data-product-id="6">❤️</a>
+      </div>
+      <div class="quantity-selector">
+        <button onclick="updateQuantity('quantity6', 'decrease')" class="quantity-btn">-</button>
+        <span id="quantity6" class="quantity">1</span>
+        <button onclick="updateQuantity('quantity6', 'increase')" class="quantity-btn">+</button>
+      </div>
+    </div>
+
+    <!-- Product 7 -->
+    <div class="category-card">
+      <div class="img-wrapper">
+        <img src="{% static 'store/img/sunscreen_matte.jpeg' %}" alt="Sunscreen">
+      </div>
+      <h3>Sunscreen</h3>
+      <p>$30</p>
+      <hr class="card-separator">
+      <div>
+        <a href="#" class="add-to-cart-btn" data-product-id="7">🛒</a>
+        <a href="#" class="add-to-fav-btn" data-product-id="7">❤️</a>
+      </div>
+      <div class="quantity-selector">
+        <button onclick="updateQuantity('quantity7', 'decrease')" class="quantity-btn">-</button>
+        <span id="quantity7" class="quantity">1</span>
+        <button onclick="updateQuantity('quantity7', 'increase')" class="quantity-btn">+</button>
+      </div>
+    </div>
+
+    <!-- Product 8 -->
+    <div class="category-card">
+      <div class="img-wrapper">
+        <img src="{% static 'store/img/sunscreen_waterproof.jpeg' %}" alt="Matte Sunscreen">
+      </div>
+      <h3>Matte Sunscreen</h3>
+      <p>$25</p>
+      <hr class="card-separator">
+      <div>
+        <a href="#" class="add-to-cart-btn" data-product-id="8">🛒</a>
+        <a href="#" class="add-to-fav-btn" data-product-id="8">❤️</a>
+      </div>
+      <div class="quantity-selector">
+        <button onclick="updateQuantity('quantity8', 'decrease')" class="quantity-btn">-</button>
+        <span id="quantity8" class="quantity">1</span>
+        <button onclick="updateQuantity('quantity8', 'increase')" class="quantity-btn">+</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  function updateQuantity(id, action) {
+    const quantityElement = document.getElementById(id);
+    let quantity = parseInt(quantityElement.innerText);
+    if (action === 'increase') quantity++;
+    if (action === 'decrease' && quantity > 1) quantity--;
+    quantityElement.innerText = quantity;
+  }
+  document.addEventListener('DOMContentLoaded', function () {
+    // Add to cart
+    document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+        btn.addEventListener('click', function (e) {
+            e.preventDefault();
+            const productId = this.dataset.productId;
+            fetch(`/add_to_cart/${productId}/`, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}',
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('cart-count').innerText = data.cart_count;
+                }
+            });
+        });
+    });
+
+    // Add to favourites
+    document.querySelectorAll('.add-to-fav-btn').forEach(btn => {
+        btn.addEventListener('click', function (e) {
+            e.preventDefault();
+            const productId = this.dataset.productId;
+            fetch(`/add-to-favourites/${productId}/`, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}',
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('favourite-count').innerText = data.favourite_count;
+                }
+            });
+        });
+    });
+});
+</script>
+{% endblock %}
