@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: ur-skin
+    env: python
+    buildCommand: |
+      pip install -r requirements.txt
+      python manage.py migrate
+    startCommand: gunicorn her_products.wsgi:application
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: her_products.settings
