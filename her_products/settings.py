@@ -2,6 +2,10 @@ from pathlib import Path
 import os
 import dj_database_url
 
+# Define DATABASES setting before using dj_database_url
+DATABASES = {}
+
+# Use dj_database_url to configure the database
 DATABASES['default'] = dj_database_url.config(default=os.getenv('DATABASE_URL'))
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
