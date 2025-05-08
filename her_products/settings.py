@@ -3,14 +3,19 @@ import os
 import dj_database_url
 
 
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 DATABASES = {
-    'default': dj_database_url.config(default='postgres://user:password@localhost/dbname')
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
 
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+
+
 
 # Secret Key and Debug Settings
 SECRET_KEY = "your-secret-key"
@@ -43,7 +48,8 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ALLOWED_HOSTS = ['*']  # For testing, you can restrict later
+ALLOWED_HOSTS = ['your-app-name.onrender.com']
+
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = "/static/"
