@@ -48,7 +48,8 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ALLOWED_HOSTS = ['your-app-name.onrender.com']
+ALLOWED_HOSTS = ['ur-skin.onrender.com', 'localhost', '127.0.0.1']
+
 
 
 # Static files (CSS, JavaScript, Images)
@@ -119,16 +120,5 @@ X_FRAME_OPTIONS = "DENY"
 
 # Email settings (optional)
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"  # For local testing
-
-# Add this section to allow media and static files to be served in development
-from django.conf import settings
-from django.conf.urls.static import static
-
-if DEBUG:
-    urlpatterns = [
-        # Add other URL patterns here
-    ]
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS[0])
 
 
